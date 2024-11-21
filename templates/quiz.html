@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootstrap5.ru/css/docs.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kion | Квиз</title>
+</head>
+
+
+<style>
+
+    #preview {
+        text-align: center;
+    }
+
+    #preview h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    #preview p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .quiz-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+    }
+
+
+    .question-image {
+        max-width: 100%;
+        height: auto;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+        margin-bottom: 20px;
+    }
+
+    #timer {
+        font-size: 18px;
+        color: #ff0000;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .question {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .options {
+        list-style: none;
+        padding: 0;
+    }
+
+    .options li {
+        background: #f4f4f4;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .options li:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    #preview-image {
+        max-width: 100%;
+        height: auto;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+
+<body>
+    <div class="quiz-container">
+        <div id="preview">
+            <h1>Волк с Уолл-стрит</h1>
+            <img src="static/img/main.jpg" alt="Quiz Preview" id="preview-image">
+            <p>Эта викторина состоит из 3 вопросов. Ответь правильно на все вопросы и получи карточку.</p>
+            <button id="start-btn" class="btn">Начать</button>
+        </div>
+        <header class="hidden">
+            <h1>Волк с Уолл-стрит</h1>
+            <div id="timer">Оставшееся время <span id="time">60</span> сек</div>
+        </header>
+        <div id="quiz" class="hidden">
+        </div>
+        <button id="next-btn" class="btn hidden">Далее</button>
+        <div id="result" class="hidden">
+            <h2>Your Score: <span id="score"></span></h2>
+        </div>
+    </div>
+
+    <script>
+        const previewContainer = document.getElementById("preview");
+        const startBtn = document.getElementById("start-btn");
+        const header = document.querySelector("header");
+
+        startBtn.addEventListener("click", () => {
+            previewContainer.classList.add("hidden");
+            header.classList.remove("hidden");
+            quizContainer.classList.remove("hidden");
+            nextBtn.classList.remove("hidden");
+            initQuiz();
+        });
+
+        const questions = [
+            {
+                question: "Режиссером фильма выступил?",
+                options: ["Квентин Тарантино", "Мартин Скорсезе", "Стивен Спилберг", "Эльдар Рязанов"],
+                answer: "Мартин Скорсезе",
+                image: "static/img/1.jpg" // Example image URL
+            },
+            {
+                question: "Кто сыграл Джордана Белфорта",
+                options: ["Джонни Депп", "Майкл Джордан", "Леонардо Ди Каприо", "Марлон Брандо"],
+                answer: "Леонардо Ди Каприо",
+                image: "static/img/2.jpg" // Example image URL
+            },
+            {
+                question: 'Сколько номинаций на премию "Оскар" получил "Волк с Уолл-стрит"?',
+                options: ["1", "4", "5", "7"],
+                answer: "5",
+                image: "static/img/3.jpg"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timeLeft = 60;
+        let timer;
+
+        const quizContainer = document.getElementById("quiz");
+        const nextBtn = document.getElementById("next-btn");
+        const resultContainer = document.getElementById("result");
+        const scoreDisplay = document.getElementById("score");
+        const timeDisplay = document.getElementById("time");
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    timeDisplay.textContent = timeLeft;
+                } else {
+                    clearInterval(timer);
+                    showResult();
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            quizContainer.innerHTML = `
+                <div class="question">${currentQuestion.question}</div>
+                <img src="${currentQuestion.image}" alt="Question Image" class="question-image">
+                <ul class="options">
+                    ${currentQuestion.options
+                        .map((option, index) => `<li onclick="selectAnswer(this)">${option}</li>`)
+                        .join("")}
+                </ul>
+            `;
+        }
+
+        function selectAnswer(selectedOption) {
+            const currentQuestion = questions[currentQuestionIndex];
+            const options = document.querySelectorAll(".options li");
+            options.forEach(option => option.style.pointerEvents = "none");
+
+            if (selectedOption.textContent === currentQuestion.answer) {
+                score++;
+                selectedOption.style.backgroundColor = "#4CAF50"; // Green for correct
+            } else {
+                selectedOption.style.backgroundColor = "#FF5252"; // Red for incorrect
+            }
+        }
+
+        // Show Result
+        function showResult() {
+            clearInterval(timer); // Остановка таймера
+            document.getElementById("timer").classList.add("hidden"); // Скрыть таймер
+            quizContainer.classList.add("hidden");
+            nextBtn.classList.add("hidden");
+            resultContainer.classList.remove("hidden");
+
+            if (score === questions.length) {
+                resultContainer.innerHTML = `
+                    <h2>Поздравляем! 🎉</h2>
+                    <p>Вы набрали максимум: <span id="score">${score} / ${questions.length}</span></p>
+                    <button id="next-page-btn" class="btn">Получить карточку</button>
+
+                `
+                ;
+
+                document.getElementById("next-page-btn").addEventListener("click", function() {
+                    window.location.href = "/cards";
+                });
+            } else {
+                resultContainer.innerHTML = `
+                    <h2>Вы набрали: <span id="score">${score} / ${questions.length}</span></h2>
+                    <h3>Карточка не получена</h3>
+                    <button id="next-page-btn" class="btn">Перейти в коллекцию</button>
+                `;
+
+                document.getElementById("next-page-btn").addEventListener("click", function() {
+                    window.location.href = "/cards";
+                });
+            }
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener("click", () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                clearInterval(timer);
+                showResult();
+            }
+        });
+
+        // Initialize Quiz
+        function initQuiz() {
+            loadQuestion();
+            startTimer();
+        }
+
+        initQuiz();
+
+
+    </script>
+</body>
+</html>
