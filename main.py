@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+import json
+
 
 app = Flask(__name__)
 
@@ -9,8 +11,19 @@ def home():
     return render_template("home.html")
 
 
+
+@app.route('/get_questions', methods=['GET'])
+def get_questions():
+    with open('questions.json', 'r', encoding='utf-8') as file:
+        quiz_questions = json.load(file)
+
+
+
+    return jsonify(quiz_questions)
+
 @app.route("/quiz")
 def quiz():
+
     return render_template("quiz.html")
 
 

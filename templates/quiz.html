@@ -12,6 +12,13 @@
 
 <style>
 
+
+    .question img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
     #preview {
         text-align: center;
     }
@@ -150,26 +157,7 @@
             initQuiz();
         });
 
-        const questions = [
-            {
-                question: "Режиссером фильма выступил?",
-                options: ["Квентин Тарантино", "Мартин Скорсезе", "Стивен Спилберг", "Эльдар Рязанов"],
-                answer: "Мартин Скорсезе",
-                image: "static/img/1.jpg" // Example image URL
-            },
-            {
-                question: "Кто сыграл Джордана Белфорта",
-                options: ["Джонни Депп", "Майкл Джордан", "Леонардо Ди Каприо", "Марлон Брандо"],
-                answer: "Леонардо Ди Каприо",
-                image: "static/img/2.jpg" // Example image URL
-            },
-            {
-                question: 'Сколько номинаций на премию "Оскар" получил "Волк с Уолл-стрит"?',
-                options: ["1", "4", "5", "7"],
-                answer: "5",
-                image: "static/img/3.jpg"
-            }
-        ];
+        let questions = [];
 
         let currentQuestionIndex = 0;
         let score = 0;
@@ -181,6 +169,16 @@
         const resultContainer = document.getElementById("result");
         const scoreDisplay = document.getElementById("score");
         const timeDisplay = document.getElementById("time");
+
+
+
+        fetch('/get_questions')
+            .then(response => response.json())
+            .then(data => {
+                questions = data;
+                loadQuestion();
+            });
+
 
         function startTimer() {
             clearInterval(timer);
@@ -196,6 +194,7 @@
         }
 
         function loadQuestion() {
+            const quizContainer = document.getElementById('quiz');
             const currentQuestion = questions[currentQuestionIndex];
             quizContainer.innerHTML = `
                 <div class="question">${currentQuestion.question}</div>
@@ -213,18 +212,21 @@
             const options = document.querySelectorAll(".options li");
             options.forEach(option => option.style.pointerEvents = "none");
 
+
             if (selectedOption.textContent === currentQuestion.answer) {
                 score++;
-                selectedOption.style.backgroundColor = "#4CAF50"; // Green for correct
+                selectedOption.style.backgroundColor = "#4CAF50";
             } else {
-                selectedOption.style.backgroundColor = "#FF5252"; // Red for incorrect
+                selectedOption.style.backgroundColor = "#FF5252";
             }
+
         }
 
-        // Show Result
+
+
         function showResult() {
-            clearInterval(timer); // Остановка таймера
-            document.getElementById("timer").classList.add("hidden"); // Скрыть таймер
+            clearInterval(timer);
+            document.getElementById("timer").classList.add("hidden");
             quizContainer.classList.add("hidden");
             nextBtn.classList.add("hidden");
             resultContainer.classList.remove("hidden");
@@ -254,7 +256,6 @@
             }
         }
 
-        // Event Listeners
         nextBtn.addEventListener("click", () => {
             if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
@@ -265,7 +266,6 @@
             }
         });
 
-        // Initialize Quiz
         function initQuiz() {
             loadQuestion();
             startTimer();
