@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню с четырьмя кнопками</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .menu-container {
+            display: inline-block;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-button {
+            display: block;
+            width: 200px;
+            margin: 15px auto;
+            padding: 15px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h2>Выберите мини-игру</h2>
+        <input class="menu-button" onclick="location.href='/quiz';" value="Фильмопятнашки" />
+        <input class="menu-button" onclick="location.href='/quiz';" value="Викторина по фильму" />
+        <input class="menu-button" onclick="location.href='/quiz';" value="Угадай по эмодзи" />
+        <input class="menu-button" onclick="location.href='/quiz';" value="Memory Match" />
+    </div>
+</body>
+</html>

@@ -4,28 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41f18a78-eb1c-4c8a-a606-32449b6dd07f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mts.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/cards/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/main.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/cards.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/quiz.html" afterDir="false" />
+    <list default="true" id="41f18a78-eb1c-4c8a-a606-32449b6dd07f" name="Changes" comment="ok">
+      <change afterPath="$PROJECT_DIR$/static/icons/cards.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/games.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cards.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cards.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,26 +36,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/roman/PycharmProjects/mts/templates",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/roman/PycharmProjects/mts/templates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\roman\PycharmProjects\mts\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roman\PycharmProjects\mts\static\icons" />
       <recent name="C:\Users\roman\PycharmProjects\mts\static\cards" />
       <recent name="C:\Users\roman\PycharmProjects\mts\templates" />
       <recent name="C:\Users\roman\PycharmProjects\mts\static\img" />
       <recent name="C:\Users\roman\PycharmProjects\mts" />
-      <recent name="C:\Users\roman\PycharmProjects\mts\templates\pictures" />
     </key>
   </component>
   <component name="RunManager">
@@ -113,6 +98,19 @@
       <option name="presentableId" value="Default" />
       <updated>1732103235906</updated>
     </task>
+    <task id="LOCAL-00001" summary="ok">
+      <option name="closed" value="true" />
+      <created>1732219810692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732219810692</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
   </component>
 </project>

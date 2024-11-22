@@ -14,6 +14,10 @@ def home():
 def quiz():
     return render_template("quiz.html")
 
+@app.route("/games")
+def menu():
+    return render_template("games.html")
+
 @app.route("/cards")
 def cards():
     return render_template("cards.html")
